@@ -55,6 +55,11 @@ function validateForm() {
         errorMessages.innerHTML += '<p>Username can only contain letters</p>';
     }
 
+    const seatNumberInt = parseInt(seatNumber, 10);
+    if (isNaN(seatNumberInt) || seatNumberInt < 1 || seatNumberInt > 50) {
+        errorMessages.innerHTML += '<p>Seat Number must be a number between 1 and 50</p>';
+    }
+
     const reservationTable = document.querySelector('#reservationTable tbody');
     const existingSeats = Array.from(reservationTable.querySelectorAll('td:nth-child(3)')).map(td => td.textContent);
     if (reservationForm.dataset.id) {
@@ -103,7 +108,7 @@ function displaySingleReservation(id) {
     const reservationTableBody = document.querySelector('#reservationTable tbody');
     reservationTableBody.innerHTML = '';
 
-    fetch(`https://localhost:7019/api/reservation/${id}`)
+    fetch(https://localhost:7019/api/reservation/${id})
         .then(response => {
             if (!response.ok) {
                 throw new Error('Reservation not found');
@@ -138,7 +143,7 @@ function editReservation(id) {
     const submitButton = reservationForm.querySelector('button[type="submit"]');
     submitButton.textContent = 'Update Reservation';
 
-    fetch(`https://localhost:7019/api/reservation/${id}`)
+    fetch(https://localhost:7019/api/reservation/${id})
         .then(response => response.json())
         .then(reservation => {
             reservationForm.dataset.id = id;
@@ -151,7 +156,7 @@ function editReservation(id) {
 }
 
 function updateReservation(id, data) {
-    fetch(`https://localhost:7019/api/reservation/${id}`, {
+    fetch(https://localhost:7019/api/reservation/${id}, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json'
@@ -196,7 +201,7 @@ function makeReservation(data) {
 }
 
 function deleteReservation(id) {
-    fetch(`https://localhost:7019/api/reservation/${id}`, {
+    fetch(https://localhost:7019/api/reservation/${id}, {
         method: 'DELETE'
     })
         .then(response => {
