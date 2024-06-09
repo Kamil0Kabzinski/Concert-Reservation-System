@@ -108,7 +108,7 @@ function displaySingleReservation(id) {
     const reservationTableBody = document.querySelector('#reservationTable tbody');
     reservationTableBody.innerHTML = '';
 
-    fetch(https://localhost:7019/api/reservation/${id})
+    fetch('https://localhost:7019/api/reservation/${id}')
         .then(response => {
             if (!response.ok) {
                 throw new Error('Reservation not found');
@@ -143,7 +143,7 @@ function editReservation(id) {
     const submitButton = reservationForm.querySelector('button[type="submit"]');
     submitButton.textContent = 'Update Reservation';
 
-    fetch(https://localhost:7019/api/reservation/${id})
+    fetch('https://localhost:7019/api/reservation/${id}')
         .then(response => response.json())
         .then(reservation => {
             reservationForm.dataset.id = id;
@@ -156,7 +156,7 @@ function editReservation(id) {
 }
 
 function updateReservation(id, data) {
-    fetch(https://localhost:7019/api/reservation/${id}, {
+    fetch('https://localhost:7019/api/reservation/${id}', {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json'
@@ -201,7 +201,7 @@ function makeReservation(data) {
 }
 
 function deleteReservation(id) {
-    fetch(https://localhost:7019/api/reservation/${id}, {
+    fetch('https://localhost:7019/api/reservation/${id}', {
         method: 'DELETE'
     })
         .then(response => {
